@@ -16,8 +16,8 @@ namespace API
             context.Database.EnsureCreated();
             if (!context.Categorys.Any())
             {
-                context.Categorys.Add(new Category() { CategoryName = "test1"});
-                context.Categorys.Add(new Category() { CategoryName = "test2"});
+                context.Categorys.Add(entity: new Category() { CategoryName = "test1"});
+                context.Categorys.Add(entity: new Category() { CategoryName = "test2"});
                 context.SaveChanges();
             }
         }

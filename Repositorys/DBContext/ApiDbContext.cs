@@ -18,6 +18,10 @@ namespace Repositorys.DBContext
 
         }
 
+        public ApiDbContext()
+        {
+
+        }
         public DbSet<Category> Categorys { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -27,8 +31,17 @@ namespace Repositorys.DBContext
 
         public override int SaveChanges()
         {
-            Audit();
-            return base.SaveChanges();
+            try
+            {
+                Audit();
+                return base.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+           
         }
 
         public async Task<int> SaveChangesAsync()
