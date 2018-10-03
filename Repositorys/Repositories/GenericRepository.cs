@@ -115,9 +115,9 @@ namespace Repositories.Repositories
             {
                 context.SaveChanges();
             }
-            catch (DbEntityValidationException e)
+            catch (Exception e)
             {
-                ThrowEnhancedValidationException(e);
+                throw e;
             }
         }
 
@@ -127,24 +127,15 @@ namespace Repositories.Repositories
             {
                 return context.SaveChangesAsync();
             }
-            catch (DbEntityValidationException e)
+            catch (Exception e)
             {
-                ThrowEnhancedValidationException(e);
+                throw e;
             }
 
             return Task.FromResult(0);
         }
 
-        protected virtual void ThrowEnhancedValidationException(DbEntityValidationException e)
-        {
-            var errorMessages = e.EntityValidationErrors
-                    .SelectMany(x => x.ValidationErrors)
-                    .Select(x => x.ErrorMessage);
-
-            var fullErrorMessage = string.Join("; ", errorMessages);
-            var exceptionMessage = string.Concat(e.Message, " The validation errors are: ", fullErrorMessage);
-            throw new DbEntityValidationException(exceptionMessage, e.EntityValidationErrors);
-        }
+      
 
         public void Update(TEntity entity, string modifiedBy = null)
         {
