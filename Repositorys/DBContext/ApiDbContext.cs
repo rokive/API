@@ -23,7 +23,7 @@ namespace Repositorys.DBContext
 
         }
         public DbSet<Category> Categorys { get; set; }
-        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(Globals.connection_string_name);

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using API.Validations;
+
 
 namespace API.VModel
 {
-    [Validator(typeof(CredentialsViewModelValidator))]
+    //[ Validatora(typeof(CredentialsVModelValidator))]
     public class CredentialsVModel
     {
         public string UserName { get; set; }

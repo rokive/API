@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Data;
 using Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,7 +32,9 @@ namespace API
         {
             //services.AddDbContext<ApiContext>(opts =>
             //    opts.UseSqlServer(@"Server=ROKIVE\ROKIVE;Database=CoreDb;Trusted_Connection=True;"));
-            services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(Globals.api_database_connection_string_name)));
+            //services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(Globals.api_database_connection_string_name)));
+            //services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(Globals.api_database_connection_string_name)));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(Globals.api_database_connection_string_name)));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
