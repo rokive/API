@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Entity.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Repositories.Repositories;
 using Repositorys.DBContext;
@@ -13,7 +14,7 @@ namespace API.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        
+
         //public GenericRepository<Category> CategoryRepository
         //{
         //    get
@@ -29,10 +30,10 @@ namespace API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Category>> Get()
         {
-             GenericRepository<Category> categoryRepository=new GenericRepository<Category>(new ApiDbContext());
+            GenericRepository<Category> categoryRepository = new GenericRepository<Category>(new ApiDbContext());
             long id = 2;
             categoryRepository.Delete(id);
-            return categoryRepository.Get(null,null,null,null,null).ToList(); 
+            return categoryRepository.Get(null, null, null, null, null).ToList();
         }
 
         // GET api/values/5
@@ -58,8 +59,8 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            GenericRepository<Category> categoryRepository = new GenericRepository<Category>(new ApiDbContext());
-            categoryRepository.Delete(id);
+            //GenericRepository<Category> categoryRepository = new GenericRepository<Category>(new ApiDbContext());
+            //categoryRepository.Delete(id);
         }
     }
 }

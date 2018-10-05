@@ -15,7 +15,7 @@ namespace Repositories.Repositories
         private readonly ApiDbContext context;
 
         public GenericRepository(ApiDbContext context) => this.context = context;
-
+        
         public void Create(TEntity entity, string createdBy = null)
         {
             context.Set<TEntity>().Add(entity);

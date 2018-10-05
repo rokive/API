@@ -17,8 +17,8 @@ namespace Repositorys.DBContext
         public ApiDbContext CreateDbContext(string[] args)
         {
             var builder = new DbContextOptionsBuilder<ApiDbContext>();
-            builder.UseSqlServer(Globals.connection_string_name);
-
+            builder.UseSqlServer(Globals.connection_string_name,b=>b.MigrationsAssembly("API"));
+            //builder.UseSqlServer(Globals.connection_string_name);
             return new ApiDbContext(builder.Options);
         }
         

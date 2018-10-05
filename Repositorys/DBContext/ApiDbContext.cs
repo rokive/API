@@ -15,19 +15,21 @@ namespace Repositorys.DBContext
         public ApiDbContext(DbContextOptions<ApiDbContext> options) :
             base(options)
         {
-
+           
         }
 
         public ApiDbContext()
         {
 
         }
-        public DbSet<Category> Categorys { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(Globals.connection_string_name);
         }
+
+        public DbSet<Category> Categorys { get; set; }
+
+        
 
         public override int SaveChanges()
         {
