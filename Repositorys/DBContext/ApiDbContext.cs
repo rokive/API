@@ -22,14 +22,21 @@ namespace Repositorys.DBContext
         {
 
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(Globals.connection_string_name);
         }
 
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //    modelBuilder.Entity<Category>();
+        //    //new StudentMap(modelBuilder.Entity<Student>());
+        //}
         public DbSet<Category> Categorys { get; set; }
+        public DbSet<Section> Sections { get; set; }
 
-        
 
         public override int SaveChanges()
         {

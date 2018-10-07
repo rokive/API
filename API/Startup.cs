@@ -14,7 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-
+using API.Data;
 
 namespace API
 {
@@ -31,16 +31,15 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<ApiContext>(opts =>
-            //    opts.UseSqlServer(@"Server=ROKIVE\ROKIVE;Database=CoreDb;Trusted_Connection=True;"));
-            //services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(Globals.api_database_connection_string_name)));
-            //services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(Globals.api_database_connection_string_name)));
-            //services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(Globals.api_database_connection_string_name)));
-            services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(Globals.api_database_connection_string_name)));
-            
-            
-           // services.AddDbContext<ApiDbContext>(options =>
-           //options.UseSqlServer(Globals.connection_string_name));
+
+            // services.AddDbContext<ApiDbContext>(options =>
+            //options.UseSqlServer(Globals.connection_string_name));
+            services.AddDbContext<ApiDbContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString(Globals.api_database_connection_string_name)));
+
+            services.AddDbContext<ApplicationDbContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString(Globals.api_database_connection_string_name)));
+
             // Add Identity
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApiDbContext>();
